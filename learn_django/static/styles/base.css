@@ -1,0 +1,17 @@
+.background-image-cover {
+    object-fit: cover;
+    height: 100vh; /* 100% of the viewport height */
+    width: 100vw; /* 100% of the viewport width */
+    position: relative; /* Allows child content to be positioned inside */
+    display: flex;
+    align-items: center; /* Vertically centers content */
+    justify-content: center; /* Horizontally centers content */
+    z-index: -1;
+}
+
+.bottom-title {
+    display: flex;
+    align-items: center; /* Vertically centers content */
+    justify-content: center; /* Horizontally centers content */
+    margin-top: -20%;
+}
