@@ -26,7 +26,10 @@ SECRET_KEY = os.environ.get('APP_SECRET_KEY', 'undefined')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["learn-django.onrender.com"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "django-experiments-vrathodev.onrender.com"
+]
 
 
 # Application definition
