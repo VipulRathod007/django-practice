@@ -1,0 +1,77 @@
+{% extends "moving-letters.html" %}
+{% load static %}
+
+{% block title %}
+Topics | Learn Django
+{% endblock %}
+
+{% block content %}
+<div>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for unused in topics|slice:":3" %}
+            {% if forloop.first %}
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{forloop.counter0}}" class="active" aria-current="true" aria-label="Slide {{forloop.counter}}"></button>
+            {% else %}
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{forloop.counter0}}" aria-current="true" aria-label="Slide {{forloop.counter}}"></button>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="carousel-inner">
+            {% if topics %}
+            {% for topic in topics|slice:":3" %}
+                {% if forloop.first %}
+                <div class="carousel-item active" data-bs-interval="3000">
+                {% else %}
+                <div class="carousel-item" data-bs-interval="3000">
+                {% endif %}
+                    <a class="text-black" href="{% url "topic-detail" topic.slug %}">
+                        <img src="{{topic.image.url}}" class="d-block" style="object-fit: cover; width: 100%; height: 60vh;" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2><span class="bg-dark text-white">{{topic.title}}</span></h2>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    {% if topics %}
+    <div class="m-4">
+        <div class="text-center">
+            <h1 class="ml11">
+                <span class="text-wrapper text-white">
+                    <span class="line line1"></span>
+                    <span class="letters">Django Essentials</span>
+                </span>
+            </h1>
+        </div>
+    
+        <div class="row justify-content-center m-4">
+        {% for topic in topics|slice:"3:" %}
+            <div class="col-6">
+                <a class="text-black text-decoration-none" href="{% url "topic-detail" topic.slug %}">
+                    <div class="card m-4 p-1">
+                        <img src="{{topic.image.url}}" class="card-img-top" style="height: 15em;" alt="...">
+                        <div class="card-body mx-2">
+                            <h4 class="card-title text-center">{{topic.title|capfirst}}</h4>
+                            <hr>
+                            <p>{{topic.description|truncatechars:99}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
