@@ -1,18 +1,30 @@
 {% extends "moving-letters.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 {{topic.title}} | Learn Django
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="row">
     {% if topicform %}
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ topicform.as_p }}
-        <button type="submit" class="btn btn-dark">Submit</button>
-    </form>
+    <h1 class="ml11 text-center">
+        <span class="text-wrapper text-white">
+            <span class="line line1"></span>
+            <span class="letters">Let's Create Topic</span>
+            <hr>
+        </span>
+    </h1>
+    <div class="col-md-9 col-lg-9 col-sm-10 mx-auto">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{topicform|crispy}}
+            <div class="col-md-2 col-lg-2 col-sm-3 mx-auto">
+                <button type="submit" class="btn btn-success w-100">Submit</button>
+            </div>
+        </form>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Utility Apps
     'django_browser_reload',
+    'crispy_forms',
+    # TODO: Fix BS5
+    'crispy_bootstrap5',
+    # Integral Apps
     'topic'
 ]
 
@@ -137,3 +142,7 @@ MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Crispy Forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
