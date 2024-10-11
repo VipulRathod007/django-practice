@@ -1,0 +1,18 @@
+{% extends "moving-letters.html" %}
+{% load static %}
+
+{% block title %}
+{{topic.title}} | Learn Django
+{% endblock %}
+
+{% block content %}
+<div>
+    {% if topicform %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ topicform.as_p }}
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

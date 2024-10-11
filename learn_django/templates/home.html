@@ -17,7 +17,10 @@ Home | Learn Django
                 </span>
             </h1>
         </div>
-        <a href="{% url "topics" %}" class="btn btn-dark">Explore</a>
+        <div class="text-dark">
+            <a href="{% url "topics" %}"        class="btn btn-light mx-2">Explore</a>
+            <a href="{% url "create-topic" %}"  class="btn btn-light mx-2">Contribute</a>
+        </div>
     </div>
 </div>
 {% endblock %}
