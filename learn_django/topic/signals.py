@@ -10,4 +10,4 @@ def create_topic_metadata(sender, instance, created, **kwargs):
     """
     # TODO: Auto-create is broken
     if created:
-        TopicMeta.objects.create(post=instance)
+        TopicMeta.objects.create(topic=instance)

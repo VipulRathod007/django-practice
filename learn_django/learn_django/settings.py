@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     # Utility Apps
     'django_browser_reload',
     'crispy_forms',
-    # TODO: Fix BS5
     'crispy_bootstrap5',
     # Integral Apps
     'topic'
