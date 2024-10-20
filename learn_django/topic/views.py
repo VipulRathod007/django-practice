@@ -13,8 +13,13 @@ def topics(request):
 
 def topic(request, in_slug: str):
     # TODO: Parse slug for injection?
-    # TODO: Implement View/Like event
+    viewed_topics = request.session.get('viewed_topics', set())
     topic = get_object_or_404(Topic, slug=in_slug)
+
+    # TODO: Post Auth Support, tie like, view to users
+    if topic.slug not in viewed_topics:
+        viewed_topics.add(topic.slug)
+        topic.metadata.viewed()
     return render(request, 'topic/topic.html', {'topic': topic})
 
 
@@ -30,3 +35,24 @@ def create_topic(request):
             return render(request, 'topic/create-topic.html', {'topicform': in_topicform})
     elif request.method == 'GET':
         return render(request, 'topic/create-topic.html', {'topicform': TopicForm()})
+
+
+def find_topic(request):
+    if request.method == 'POST':
+        if 'query' in request.POST:
+            # TODO: Clean Form input
+            in_query = str(request.POST['query']).strip()
+            topics = Topic.objects.filter(title__icontains=in_query)
+            return render(
+                request,
+                'topic/find_topic.html',
+                {
+                    'topics': topics,
+                    'user_query': in_query
+                }
+            )
+        else:
+            return redirect('home')
+    else:
+        # TODO: Handle method not allowed error
+        return redirect('home')

@@ -20,5 +20,6 @@ from .views import *
 urlpatterns = [
     path('', topics, name='topics'),
     path('create/', create_topic, name='create-topic'),
+    path('find/', find_topic, name='find-topic'),
     path('<slug:in_slug>/', topic, name='topic-detail'),
 ]

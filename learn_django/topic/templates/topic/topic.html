@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+{% include "navbar.html" %}
 <div class="bg-dark text-white" style="min-height: 100vh;">
     <img src="{{topic.image.url}}" class="d-block" style="object-fit: cover; width: 100%; height: 50vh;" alt="...">
     <div class="container align-center text-center">
@@ -15,6 +16,10 @@
                 <span class="letters">{{topic.title|title}}</span>
             </span>
         </h1>
+        <div class="m-2" style="text-align: right;">
+            <span class="mx-1"><i class="bi bi-eye-fill"></i> {{ topic.metadata.views }}</span>
+            <span><i class="bi bi-heart-fill"></i> {{ topic.metadata.likes }}</span>
+        </div>
         <p>{{topic.description}}</p>
     </div>
 </div>

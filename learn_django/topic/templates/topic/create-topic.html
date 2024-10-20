@@ -7,8 +7,9 @@ Contribute | {{ block.super }}
 {% endblock %}
 
 {% block content %}
+{% include "navbar.html" %}
 <div class="bg-dark text-white" style="min-height: 100vh;">
-    <div class="row">
+    <div class="row pt-4">
         {% if topicform %}
         <h1 class="ml11 text-center">
             <span class="text-wrapper text-white">

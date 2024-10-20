@@ -6,6 +6,7 @@ Topics | {{ block.super }}
 {% endblock %}
 
 {% block content %}
+{% include "navbar.html" %}
 <div class="bg-dark text-white">
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -64,6 +65,10 @@ Topics | {{ block.super }}
                         <div class="card-body mx-2">
                             <h4 class="card-title text-center">{{topic.title|title|truncatewords:5}}</h4>
                             <hr>
+                            <div style="text-align: right;">
+                                <span class="mx-1"><i class="bi bi-eye-fill"></i> {{ topic.metadata.views }}</span>
+                                <span><i class="bi bi-heart-fill"></i> {{ topic.metadata.likes }}</span>
+                            </div>
                             <p>{{topic.description|truncatechars:99}}</p>
                         </div>
                     </div>

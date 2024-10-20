@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Search Results | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+{% include "navbar.html" %}
+<div class="bg-dark text-white" style="min-height: 100vh;">
+    <div class="p-4">
+        <div class="text-center">
+            <h1 class="ml11">
+                <span class="text-wrapper text-white">
+                    <span class="line line1"></span>
+                    {% if topics %}
+                    <span class="letters">Search Results</span>
+                    {% else %}
+                    <span class="letters">No matching Results</span>
+                    {% endif %}
+                </span>
+            </h1>
+            <h2>{{ user_query }}</h2>
+        </div>
+    
+        {% if topics %}
+        <div class="row justify-content-center m-4">
+        {% for topic in topics %}
+            <div class="col-6">
+                <a class="text-black text-decoration-none" href="{% url "topic-detail" topic.slug %}">
+                    <div class="card m-4 p-1">
+                        <img src="{{topic.image.url}}" class="card-img-top" style="height: 15em;" alt="...">
+                        <div class="card-body mx-2">
+                            <h4 class="card-title text-center">{{topic.title|title|truncatewords:5}}</h4>
+                            <hr>
+                            <div class="m-2" style="text-align: right;">
+                                <span class="mx-1"><i class="bi bi-eye-fill"></i> {{ topic.metadata.views }}</span>
+                                <span><i class="bi bi-heart-fill"></i> {{ topic.metadata.likes }}</span>
+                            </div>
+                            <p>{{topic.description|truncatechars:99}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
