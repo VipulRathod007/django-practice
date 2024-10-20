@@ -1,18 +1,18 @@
-{% extends "moving-letters.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}
-{{topic.title}} | Learn Django
+{{topic.title|title}} | {{ block.super }}
 {% endblock %}
 
 {% block content %}
-<div class="bg-dark text-white">
+<div class="bg-dark text-white" style="min-height: 100vh;">
     <img src="{{topic.image.url}}" class="d-block" style="object-fit: cover; width: 100%; height: 50vh;" alt="...">
     <div class="container align-center text-center">
         <h1 class="ml11">
             <span class="text-wrapper text-white">
                 <span class="line line1"></span>
-                <span class="letters">{{topic.title}}</span>
+                <span class="letters">{{topic.title|title}}</span>
             </span>
         </h1>
         <p>{{topic.description}}</p>
